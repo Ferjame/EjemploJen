@@ -1,0 +1,49 @@
+---
+title: "Mitarea"
+author: "Ferjame"
+date: "10/12/2021"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+***Alumno*** **:** *Fern*
+
+### Fer
+
+**Nivel 2**
+
+**2.** *Analizar la data de los fallecidos por covid en regiones escogidas a su criterio.*
+
+```{r}
+fallecidos_covid <- read.csv("G:/Mi unidad/UNMSM/Ciclo IV/Programacion/Semana 7/fallecidos_covid.csv", sep=";", na.strings="NA", stringsAsFactors=TRUE)
+summary(fallecidos_covid)
+str(fallecidos_covid)
+```
+
+**2.1.** *R ealizar un grafico y analizar.*
+
+```{r}
+library(tidyverse)
+a <- require(tidyverse)
+if(!require("tidyverse")) install.packages("tidyverse", dependencies = TRUE)
+
+fallecidos_covid %>%
+  filter(!SEXO=="11",DEPARTAMENTO=="AREQUIPA"|
+           DEPARTAMENTO=="ICA" | DEPARTAMENTO == "PIURA"| DEPARTAMENTO == "CALLAO") %>%
+  drop_na(SEXO)%>%
+  ggplot(aes(DEPARTAMENTO,fill=SEXO))+geom_bar(position = "dodge")+
+  theme_bw()+
+  theme(panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank())+
+  labs(title = "Fallecidos covid",
+       x="Departamento",
+       y="CANTIDAD DE PERSONAS")
+```
+
+**2.2.** *Describir lo que se est ́a evaluando en pocas palabras.*
+
+
+
